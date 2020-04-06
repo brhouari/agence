@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% block title prprety.title %}
+
+{% block body  %}
+
+
+   <div class="jumbotron">
+
+      <div class="container">
+       <div class="row">
+           <div class="col-md-8">
+
+           </div>
+           <div class="col-md-4">
+               <h1>{{ prprety.title }}</h1>
+               <h2>{{ prprety.rooms }} pièces - {{ prprety.surface }} M²</h2>
+               <div class="text-primary" style="font-size: 4em;font-weight: bold;">{{ prprety.price | number_format(0,'', ' ') }} $</div>
+               <a href="" class="btn btn-primary"> Contactez l'agence</a>
+           </div>
+       </div>
+      </div>
+   </div>
+
+    <div class="container mt-4">
+
+        <h2>Description:</h2>
+        <p >
+            {{ prprety.description |nl2br }}
+        </p>
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Caractéristique:</h2>
+                <table class="table table-striped">
+
+                    <tbody>
+                    <tr>
+
+                        <td>Surface habitable</td>
+                        <td>{{ prprety.surface }}</td>
+
+                    </tr>
+                    <tr>
+
+                        <td>Pièce</td>
+                        <td>{{ prprety.rooms }}</td>
+
+                    </tr>
+                    <tr>
+
+                        <td>Chambre</td>
+                        <td>{{ prprety.bedrooms }}</td>
+
+                    </tr>
+                    <tr>
+
+                        <td>Etage</td>
+                        <td>{{ prprety.floor }}</td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-md-4">
+                <h2>Spécificité:</h2>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

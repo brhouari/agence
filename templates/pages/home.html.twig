@@ -1,0 +1,37 @@
+
+{% extends 'base.html.twig' %}
+{% block title 'Acueill' %}
+{% block body  %}
+
+    <div class="jumbotron text-center">
+        <h1>Agence Immobiliére</h1>
+        <p>Open your console terminal, move into your new project directory and start the local web server as follows:</p>
+    </div>
+    <div class="container">
+
+   </div>
+
+    <div class="container">
+    <h2>Les derniers biens:</h2>
+    <div class="row flex">
+     {% for prprety in propreties %}
+       <div class="col-3">
+         <div class="card">
+             <div class="card-body">
+                 <h5 class="card-tittle">
+                     <a href=" {{ path('show',{id: prprety.id, slug: prprety.title}) }}">{{ prprety.title }}</a>
+                     <p class="card-text"> {{ prprety.city }} {{ prprety.PostaleCode }}</p>
+
+                     <div class="text-primary" style="font-weight: bold; font-size: 2rem;"> {{ prprety.price | number_format(0,'', ' ')}} $ </div>
+                 </h5>
+             </div>
+
+
+         </div>
+       </div>
+
+      {% endfor %}
+    </div>
+    </div>
+
+{% endblock %}
