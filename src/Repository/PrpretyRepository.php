@@ -46,7 +46,7 @@ class PrpretyRepository extends ServiceEntityRepository
 
     private function findallquery(): QueryBuilder{
         return $this->createQueryBuilder('p')
-            ->where('p.sold = true');
+            ->where('p.sold = false');
 
     }
     // /**
