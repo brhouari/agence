@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PrpretyRepository")
+ * @UniqueEntity("title")
  */
 class Prprety
 {
@@ -29,6 +31,7 @@ class Prprety
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min= 10, max= 600)
      */
     private $surface;
 
@@ -64,6 +67,7 @@ class Prprety
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9]{5}$/")
      */
     private $postale_code;
 
