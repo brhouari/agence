@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\Prprety;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PrpretyRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,13 +20,17 @@ class PrpretyController extends AbstractController {
      */
 
     private $repository;
+    /**
+     * @var ObjectManager
+     */
+    private $em;
 
 
-
-    public function __construct(PrpretyRepository $repository )
+    public function __construct(PrpretyRepository $repository, EntityManagerInterface $em)
     {
         $this->repository = $repository;
 
+        $this->em = $em;
     }
 
     /**
@@ -38,8 +43,9 @@ class PrpretyController extends AbstractController {
 
 
 
-
-        return $this->render('proprety/bien.html.twig', ['curent-menu' => 'properties']);
+        $propreties = $this->repository->findvisible();
+        return $this->render('proprety/bien.html.twig', ['curent-menu' => 'properties',
+            'propreties' => $propreties ]);
     }
 
     /**

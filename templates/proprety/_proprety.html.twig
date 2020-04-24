@@ -1,0 +1,25 @@
+
+
+
+<div class="row">
+
+
+    {% for pr in propreties %}
+
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-tittle">
+                        <a href=" {{ path('show',{id: pr.id, slug: pr.title}) }}">{{ pr.title }}</a>
+                        <p class="card-text"> {{ pr.city }} {{ pr.PostaleCode }}</p>
+
+                        <div class="text-primary" style="font-weight: bold; font-size: 2rem;"> {{ pr.price | number_format(0,'', ' ')}} $ </div>
+                    </h5>
+                </div>
+
+
+            </div>
+        </div>
+
+    {% endfor %}
+</div>
