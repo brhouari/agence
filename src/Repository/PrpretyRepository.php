@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Prprety;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 
 /**
@@ -20,16 +21,20 @@ class PrpretyRepository extends ServiceEntityRepository
         parent::__construct($registry, Prprety::class);
     }
 
+    /**
+     * @return Query
+     *
+     */
 
-
-    public function findvisible(){
+    public function findvisible():Query{
 
         return $this->findallquery()
             ->getQuery()
-            ->getResult()
+
             ;
 
     }
+
 
     /**
      * @return prprety[]

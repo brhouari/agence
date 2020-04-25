@@ -5,11 +5,23 @@
 
 
 
-
     <div class="container mt-4">
-        <h1>Proprety Page</h1>
+      <div class="jumbotron text-center">
+            <form action="" method="get">
+                <div class="form-group">
+                   <h2> Recherche  D'un Bien</h2>
+                    <input name="filter"  type="text" class="form-control" id="formGroupExampleInput" placeholder="Exemple a chercher">
+                </div>
+                <button type="submit" class="btn btn-primary mb-4">Recherche</button>
+            </form>
+      </div>
+
 
        {% include 'proprety/_proprety.html.twig' %}
+
+        <div class="navigation">
+            {{ knp_pagination_render(propreties) }}
+        </div>
     </div>
 
 

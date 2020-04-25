@@ -5,7 +5,11 @@ use App\Entity\Prprety;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PrpretyRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+
+
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -35,15 +39,31 @@ class PrpretyController extends AbstractController {
 
     /**
      * @Route("/proprety", name="bien")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return  Response
-     *
      */
 
-    public function index(): Response{
+    public function index(PaginatorInterface $paginator, Request $request): Response{
+
+
+        $em = $this->getDoctrine ()->getManager ();
+        $queryBuilder = $em->getRepository('App:prprety')->createQueryBuilder('bp');
+
+        if ($request->query->getAlnum('filter')) {
+            $queryBuilder
+                ->where('bp.title LIKE :title')
+                ->setParameter('title', '%' . $request->query->getAlnum('filter') . '%');
+        }
 
 
 
-        $propreties = $this->repository->findvisible();
+         $propreties = $paginator->paginate(
+            $queryBuilder->getQuery(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            $request->query->getInt('limit', 12)/*limit per page*/
+        );
+
         return $this->render('proprety/bien.html.twig', ['curent-menu' => 'properties',
             'propreties' => $propreties ]);
     }
