@@ -46,20 +46,26 @@ class PrpretyController extends AbstractController {
 
     public function index(PaginatorInterface $paginator, Request $request): Response{
 
-
-        $em = $this->getDoctrine ()->getManager ();
-        $queryBuilder = $em->getRepository('App:prprety')->createQueryBuilder('bp');
-
+         $pr = new Prprety();
+       // $em = $this->getDoctrine ()->getManager ();
+        //$queryBuilder = $em->getRepository('App:prprety')->createQueryBuilder('bp');
+         $queryBuilder = $this->repository->findvisible();
         if ($request->query->getAlnum('filter')) {
             $queryBuilder
-                ->where('bp.title LIKE :title')
+                ->andWhere('p.title LIKE :title')
                 ->setParameter('title', '%' . $request->query->getAlnum('filter') . '%');
         }
+        if($request->query->getInt('pride')){
+            $queryBuilder
+                ->andWhere ('p.price < :maxprice')
+                ->setParameter ('maxprice', $request->query->getInt ('pride'));
 
+        }
 
 
          $propreties = $paginator->paginate(
             $queryBuilder->getQuery(), /* query NOT result */
+
             $request->query->getInt('page', 1), /*page number*/
             $request->query->getInt('limit', 12)/*limit per page*/
         );

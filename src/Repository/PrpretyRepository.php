@@ -22,14 +22,14 @@ class PrpretyRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Query
+     * @return QueryBuilder
      *
      */
 
-    public function findvisible():Query{
+    public function findvisible():QueryBuilder{
 
         return $this->findallquery()
-            ->getQuery()
+
 
             ;
 
