@@ -7,8 +7,8 @@
     "core-js": "^3.0.0",
     "regenerator-runtime": "^0.13.2",
     "webpack-notifier": "^1.6.0",
-    "jquery": "latest",
-    "select2": "latest"
+    "jquery": "3.5.1",
+    "select2": "4.0.13"
   },
   "license": "UNLICENSED",
   "private": true,
