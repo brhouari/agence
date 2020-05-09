@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "jQuery": "^1.7.4",
-    "jquery": "latest",
-    "select2": "latest"
+    "jquery": "3.5.1",
+    "select2": "4.0.13"
   }
 }
